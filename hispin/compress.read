@@ -1,0 +1,5 @@
+run command to compress special files
+$ ./compressjs.sh jquery-ui-1.8.16.custom.min.js chat-widget.js target.min.js
+
+run command to compress all files
+$ ./compressjs.sh *.js target.min.js
