@@ -1,5 +1,5 @@
 /**
- * Created by Mirihella on 3/14/2016.
+ * Created by flaterrr on 3/14/2016.
  */
 
 var str = "hello";
@@ -73,4 +73,10 @@ test('isBoolean()', function () {
     ok(!isBoolean(undef), 'passed..!');
     ok(!isBoolean(17), 'passed..!');
     ok(!isBoolean(''), 'passed..!');
+});
+
+test('Object.equals()', function () {
+    ok(Object.equals({},{}), 'passed..!');
+
+    ok(!Object.equals(new Object(),strObj), 'passed..!');
 });
