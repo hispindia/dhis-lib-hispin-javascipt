@@ -5,67 +5,31 @@
 var HIUtils = {};
 
 /**
- * return true for string values and string objects
+ * return the type of any variable
+ * e.g. - function will return 'Number' for both primitive and object type numbers
  * @param arg
- * @returns {boolean}
+ * @returns {string}
  */
-HIUtils.isString = function (arg) {
+HIUtils.typeOf = function (arg) {
 
     try {
-        return Object.prototype.toString.call(arg) == '[object String]';
+        var type = Object.prototype.toString.call(arg);
+        return type.substring(type.search(" ") + 1, type.length - 1);
     } catch (e) {
-        return false;
+        return undefined;
     }
 };
 
 /**
- * return true for number values and number objects
- * @param arg
- * @returns {boolean}
- */
-HIUtils.isNumber = function (arg) {
-    try {
-        return (!(arg === Infinity) && Object.prototype.toString.call(arg) == '[object Number]' && !isNaN(arg));
-        //return false;
-    } catch (e) {
-        return false;
-    }
-};
-
-/**
- * return true for integer values and integer objects
+ * return true for only primitive and object type numbers which are safe integers defined in javascript
+ * no strings contain integers are passed
+ * Number.MIN_SAFE_INTEGER and Number.MAX_SAFE_INTEGER in JS are the boundaries
  * @param arg
  * @returns {*}
  */
 HIUtils.isInt = function (arg) {
     try {
-        return HIUtils.isNumber(arg) && Number.isInteger(Number(arg));
-    } catch (e) {
-        return false;
-    }
-};
-
-/**
- * return true for arrays
- * @param arg
- * @returns {boolean}
- */
-HIUtils.isArray = function (arg) {
-    try {
-        return Object.prototype.toString.call(arg) === '[object Array]';
-    } catch (e) {
-        return false;
-    }
-};
-
-/**
- * return true for booleans
- * @param arg
- * @returns {boolean}
- */
-HIUtils.isBoolean = function (arg) {
-    try {
-        return Object.prototype.toString.call(arg) == '[object Boolean]';
+        if (HIUtils.typeOf(arg) == 'Number') return Number.isSafeInteger(Number(arg));
     } catch (e) {
         return false;
     }
@@ -117,24 +81,11 @@ HIUtils.compare = function (x, y) {
 };
 
 /**
- * able to compare strings,numbers,null,undefined,objects,arrays
- * @param obj
- * @returns {*}
- */
-/*
-HIUtils.cloneObj = function (obj){
-
-    return JSON.parse(JSON.stringify(obj));
-    //return Object.assign({}, obj);
-};
-*/
-
-/**
  * able to clone strings,numbers,null,undefined,objects,arrays
  * @param obj
  * @returns {*}
  */
-HIUtils.clone = function (src){
+HIUtils.clone = function (src) {
     var clone;
     try {
         // check src is reference type of primitive
