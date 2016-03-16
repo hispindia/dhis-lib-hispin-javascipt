@@ -60,6 +60,29 @@ test('HIUtils.isInt()', function () {
     ok(!HIUtils.isInt(''), 'passed..!');
 });
 
+test('HIUtils.isPositiveInt()', function () {
+    ok(HIUtils.isPositiveInt(num), 'passed..!');
+    ok(HIUtils.isPositiveInt(numObj), 'passed..!');
+    ok(HIUtils.isPositiveInt(10.0), 'passed..!');
+
+    ok(!HIUtils.isPositiveInt(0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(0.0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(-10), 'passed..!');
+    ok(!HIUtils.isPositiveInt(-0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(+0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(0/0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(1/0), 'passed..!');
+    ok(!HIUtils.isPositiveInt(Date()), 'passed..!');
+    ok(!HIUtils.isPositiveInt("123"), 'passed..!');
+    ok(!HIUtils.isPositiveInt(10.1), 'passed..!');
+    ok(!HIUtils.isPositiveInt(0.01), 'passed..!');
+    ok(!HIUtils.isPositiveInt(float1), 'passed..!');
+    ok(!HIUtils.isPositiveInt(str), 'passed..!');
+    ok(!HIUtils.isPositiveInt(str + ""), 'passed..!');
+    ok(!HIUtils.isPositiveInt(strObj), 'passed..!');
+    ok(!HIUtils.isPositiveInt(''), 'passed..!');
+});
+
 test('HIUtils.compare()', function () {
     ok(HIUtils.compare({},{}), 'passed..!');
     ok(HIUtils.compare(null,null), 'passed..!');
@@ -88,4 +111,6 @@ test('HIUtils.clone()', function () {
 
     ok(!HIUtils.compare(array1,HIUtils.clone(array2)), '100 passed..!');
     ok(!HIUtils.compare(new Array(),HIUtils.clone(array3)), 'passed..!');
+
+    console.log(new Number(12.0) < 10);
 });

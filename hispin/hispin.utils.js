@@ -7,6 +7,7 @@ var HIUtils = {};
 /**
  * return the type of any variable
  * e.g. - function will return 'Number' for both primitive and object type numbers
+ * possible return values - 'Undefined', 'Null', 'Number', 'String', 'Array', 'Object', 'Function'
  * @param arg
  * @returns {string}
  */
@@ -25,7 +26,7 @@ HIUtils.typeOf = function (arg) {
  * no strings contain integers are passed
  * Number.MIN_SAFE_INTEGER and Number.MAX_SAFE_INTEGER in JS are the boundaries
  * @param arg
- * @returns {*}
+ * @returns {boolean}
  */
 HIUtils.isInt = function (arg) {
     try {
@@ -36,7 +37,20 @@ HIUtils.isInt = function (arg) {
 };
 
 /**
- *
+ * only positive integers, no zeros
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isPositiveInt = function (arg) {
+    try {
+        return HIUtils.isInt(arg) && arg > 0;
+    } catch (e) {
+        return false;
+    }
+};
+
+/**
+ * able to compare strings,numbers,null,undefined,objects,arrays
  * @param x
  * @param y
  * @returns {boolean}
@@ -83,7 +97,7 @@ HIUtils.compare = function (x, y) {
 /**
  * able to clone strings,numbers,null,undefined,objects,arrays
  * @param obj
- * @returns {*}
+ * @returns {clone}
  */
 HIUtils.clone = function (src) {
     var clone;
