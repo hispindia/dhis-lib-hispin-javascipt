@@ -22,6 +22,51 @@ HIUtils.typeOf = function (arg) {
 };
 
 /**
+ * return true for undefined variables including functions with no returns
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isUndefined = function (arg) {
+    return arg === undefined;
+};
+
+/**
+ * return true for null
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isNull = function (arg) {
+    return arg === null;
+};
+
+/**
+ * return true for false,true and boolean objects
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isBoolean = function(arg) {
+    return Object.prototype.toString.call(arg) == '[object Boolean]';
+};
+
+/**
+ * return true for both primitive and object type numbers
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isNumber = function (arg){
+    return Object.prototype.toString.call(arg) == '[object Number]';
+};
+
+/**
+ * return true for arrays
+ * @param arg
+ * @returns {boolean}
+ */
+HIUtils.isArray = function(arg){
+    return Object.prototype.toString.call(arg) === '[object Array]';
+};
+
+/**
  * return true for only primitive and object type numbers which are safe integers defined in javascript
  * no strings contain integers are passed
  * Number.MIN_SAFE_INTEGER and Number.MAX_SAFE_INTEGER in JS are the boundaries
