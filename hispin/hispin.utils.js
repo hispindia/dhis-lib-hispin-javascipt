@@ -2,7 +2,7 @@
  * Created by nhancao on 3/11/16.
  */
 
-var HIUtils = {};
+var HIUtils = HIUtils || {};
 
 /**
  * return the type of any variable
@@ -44,7 +44,7 @@ HIUtils.isNull = function (arg) {
  * @param arg
  * @returns {boolean}
  */
-HIUtils.isBoolean = function(arg) {
+HIUtils.isBoolean = function (arg) {
     return Object.prototype.toString.call(arg) == '[object Boolean]';
 };
 
@@ -53,7 +53,7 @@ HIUtils.isBoolean = function(arg) {
  * @param arg
  * @returns {boolean}
  */
-HIUtils.isNumber = function (arg){
+HIUtils.isNumber = function (arg) {
     return Object.prototype.toString.call(arg) == '[object Number]';
 };
 
@@ -62,7 +62,7 @@ HIUtils.isNumber = function (arg){
  * @param arg
  * @returns {boolean}
  */
-HIUtils.isArray = function(arg){
+HIUtils.isArray = function (arg) {
     return Object.prototype.toString.call(arg) === '[object Array]';
 };
 
@@ -169,4 +169,14 @@ HIUtils.clone = function (src) {
     } catch (e) {
         return clone;
     }
+};
+
+/**
+ * return sorted array
+ * @param arr - array needed to be sorted
+ * @param func - optional. custom function that defines the sort order
+ * @returns {Array.<T>|*}
+ */
+HIUtils.sortArr = function (arr, func) {
+    return arr.sort(func);
 };
